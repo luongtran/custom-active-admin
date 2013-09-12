@@ -13,9 +13,7 @@ $(document).ready(function () {
             "json_data": {
                 "ajax": {
                     "url": function (node) {
-<<<<<<< HEAD
-                    	return "/roots/" + current_node_pid;
-=======
+
                         if (node == -1) {
                             console.log('get root node: ' + node);
                             return "/roots/" + current_node_pid;
@@ -24,7 +22,6 @@ $(document).ready(function () {
                             console.log('get children of' + parent_pid);
                             return "/childrens-of/" + parent_pid;
                         }
->>>>>>> 94b96aa521c40d5bbdbbb939331f00ca03b4c3a3
                     },
                     "type": "GET",
                     "success": function (nodes) {
