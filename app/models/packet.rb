@@ -5,5 +5,6 @@ class Packet < ActiveRecord::Base
 
   def auto_position
     self.position = self.id
+    self.save
   end
 end

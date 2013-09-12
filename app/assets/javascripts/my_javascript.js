@@ -13,12 +13,7 @@ $(document).ready(function () {
             "json_data": {
                 "ajax": {
                     "url": function (node) {
-                        if (node == -1) {
-                            console.log('current:' + current_node_pid);
-                            return "/roots/" + current_node_pid;
-                        } else { // Node have parent
-                            return "/childrens-of/" + current_node_pid;
-                        }
+                    	return "/roots/" + current_node_pid;
                     },
                     "type": "GET",
                     "success": function (nodes) {
@@ -53,6 +48,29 @@ $(document).ready(function () {
                         console.log('success');
                     }
                 })
+            }).bind("open_node.jstree", function (e, data){
+            	console.log(data);
+            	var pid = $(data.rslt.obj[0]).attr('pid');
+            	console.log(pid);
+            	$.ajax({
+            		url: "/childrens-of/" + pid,
+            		type: "GET",
+            		success: function(nodes) {
+            			console.log(nodes.length);
+                        var data = [];
+                        for (var i = 0; i < nodes.length; i++) {
+                            var op = nodes[i];
+                            var node = {
+                                "data": op.name,
+                                "attr": {"pid": op.id},
+                                "metadata": op,
+                                "state": "closed"
+                            }
+                            data.push(node);
+                        }
+                        return data;
+            		}
+            	});
             });
     };
     $("#sortable").sortable({

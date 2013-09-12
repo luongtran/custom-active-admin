@@ -18,5 +18,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'execjs'
+
+gem 'therubyracer'
+
 gem 'jquery-rails'
 gem 'hirb'
