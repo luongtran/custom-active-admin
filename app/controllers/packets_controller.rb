@@ -6,7 +6,15 @@ class PacketsController < InheritedResources::Base
   #    f.html
   #  end
   #end
+  def create
+    @packet = Packet.new(params[:packet])
+    if @packet.save
+      redirect_to @packet
+    else
+      render :edit
+    end
 
+  end
   def show
     @packet = Packet.find params[:id]
     @childrens = Packet.where(:parent_id => params[:id])

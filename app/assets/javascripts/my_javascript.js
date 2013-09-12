@@ -13,11 +13,21 @@ $(document).ready(function () {
             "json_data": {
                 "ajax": {
                     "url": function (node) {
+<<<<<<< HEAD
                     	return "/roots/" + current_node_pid;
+=======
+                        if (node == -1) {
+                            console.log('get root node: ' + node);
+                            return "/roots/" + current_node_pid;
+                        } else { // Node have parent
+                            var parent_pid = $(node).attr('pid');
+                            console.log('get children of' + parent_pid);
+                            return "/childrens-of/" + parent_pid;
+                        }
+>>>>>>> 94b96aa521c40d5bbdbbb939331f00ca03b4c3a3
                     },
                     "type": "GET",
                     "success": function (nodes) {
-                        console.log(nodes.length);
                         var data = [];
                         for (var i = 0; i < nodes.length; i++) {
                             var op = nodes[i];
@@ -45,7 +55,7 @@ $(document).ready(function () {
                     url: "/packet-infor/" + pid,
                     type: 'GET',
                     success: function () {
-                        console.log('success');
+                        console.log('get packet infor success');
                     }
                 })
             }).bind("open_node.jstree", function (e, data){
