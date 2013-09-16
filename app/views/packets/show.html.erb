@@ -1,7 +1,7 @@
 <p>
   <b>Name:</b>
   <%= @packet.name %>
-<h1>Listing items</h1>
+<h1>Listing childrens</h1>
 
 <table>
   <tr>
@@ -11,9 +11,9 @@
     <th></th>
   </tr>
 
-  <% @items.each do |item| %>
+  <% @childrens.each do |p| %>
       <tr>
-        <td><%= item.name %></td>
+        <td><%= p.name %></td>
       </tr>
   <% end %>
 </table>

@@ -2,22 +2,23 @@
 
 <table>
   <tr>
+    <th>Id</th>
     <th>Name</th>
-    <th></th>
-    <th></th>
+    <th>Parent Id</th>
     <th></th>
   </tr>
 
-<% @packets.each do |packet| %>
-  <tr>
-    <td><%= packet.name %></td>
-    <td><%= link_to 'Show', packet %></td>
-    <td><%= link_to 'Edit', edit_packet_path(packet) %></td>
-    <td><%= link_to 'Destroy', packet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @packets.each do |packet| %>
+      <tr>
+        <td><%= packet.id %></td>
+        <td><%= packet.name %></td>
+        <td><%= packet.parent_id%></td>
+        <td><%= link_to 'Show', packet %></td>
+        <td><%= link_to 'Destroy', packet, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+  <% end %>
 </table>
 
-<br />
+<br/>
 
 <%= link_to 'New Packet', new_packet_path %>

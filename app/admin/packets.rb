@@ -7,8 +7,8 @@ ActiveAdmin.register Packet do
   #end
 
   index do
-    render partial: "admin/packets/index"
-    hr
+    @packets = Packet.select("id, name").where(:parent_id => nil).order("position DESC")
+    render partial: "admin/packets/index", :locals => {:packets => @packets}
   end
 
   sidebar "Informations" do
