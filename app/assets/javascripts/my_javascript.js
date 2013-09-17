@@ -14,15 +14,16 @@ $(document).ready(function () {
                 "ajax": {
                     "url": function (node) {
                         if (node == -1) {
-                            console.log('current:' + current_node_pid);
+                            console.log('get root node: ' + node);
                             return "/roots/" + current_node_pid;
                         } else { // Node have parent
-                            return "/childrens-of/" + current_node_pid;
+                            var parent_pid = $(node).attr('pid');
+                            console.log('get children of' + parent_pid);
+                            return "/childrens-of/" + parent_pid;
                         }
                     },
                     "type": "GET",
                     "success": function (nodes) {
-                        console.log(nodes.length);
                         var data = [];
                         for (var i = 0; i < nodes.length; i++) {
                             var op = nodes[i];
@@ -50,7 +51,7 @@ $(document).ready(function () {
                     url: "/packet-infor/" + pid,
                     type: 'GET',
                     success: function () {
-                        console.log('success');
+                        console.log('get packet infor success');
                     }
                 })
             });
